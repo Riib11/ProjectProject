@@ -1,0 +1,301 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      9118,        293]
+NotebookOptionsPosition[      8708,        274]
+NotebookOutlinePosition[      9065,        290]
+CellTagsIndexPosition[      9022,        287]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Clear", "[", 
+   RowBox[{
+   "f", ",", "levels", ",", "level3D", ",", "curve", ",", "x", ",", "y", ",", 
+    "z", ",", "l", ",", "s"}], "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"f", "[", 
+    RowBox[{"{", 
+     RowBox[{"x_", ",", "y_"}], "}"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{"x", "^", "2"}], "+", 
+    RowBox[{"y", "^", "2"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"levels", "=", 
+   RowBox[{"Solve", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"f", "[", 
+       RowBox[{"{", 
+        RowBox[{"x", ",", "y"}], "}"}], "]"}], "\[Equal]", "z"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "y"}], "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"level3D", "[", "l_", "]"}], ":=", 
+   RowBox[{"Evaluate", "[", 
+    RowBox[{
+     RowBox[{"y", "/.", "levels"}], "/.", 
+     RowBox[{"z", "\[Rule]", "l"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"curve", "[", 
+     RowBox[{"{", 
+      RowBox[{"x_", ",", "y_", ",", "z_"}], "}"}], "]"}], ":=", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", "y", ",", "z"}], "}"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"xMin", "=", "0"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"xMax", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"xStep", "=", "0.1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"levelData1", "[", "l_", "]"}], "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"u", ",", 
+       RowBox[{"Part", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"level3D", "[", "l", "]"}], "/.", 
+          RowBox[{"x", "\[Rule]", "u"}]}], ",", "1"}], "]"}], ",", "l"}], 
+      "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"u", ",", "xMin", ",", "xMax", ",", "xStep"}], "}"}]}], "]"}]}],
+   ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"levelData2", "[", "l_", "]"}], "=", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"u", ",", 
+        RowBox[{"Part", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"level3D", "[", "l", "]"}], "/.", 
+           RowBox[{"x", "\[Rule]", "u"}]}], ",", "2"}], "]"}], ",", "l"}], 
+       "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"u", ",", "xMin", ",", "xMax", ",", "xStep"}], "}"}]}], 
+     "]"}]}], ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"vectorLevel1", "[", "l_", "]"}], "=", 
+   RowBox[{"Map", "[", 
+    RowBox[{"curve", ",", 
+     RowBox[{"levelData1", "[", "l", "]"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"vectorLevel2", "[", "l_", "]"}], "=", 
+    RowBox[{"Map", "[", 
+     RowBox[{"curve", ",", 
+      RowBox[{"levelData2", "[", "l", "]"}]}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"Table", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"x", ",", "y", ",", "z"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", 
+     RowBox[{"-", "1"}], ",", "1", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"y", ",", 
+     RowBox[{"-", "1"}], ",", "1", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"z", ",", 
+     RowBox[{"-", "1"}], ",", "1", ",", "1"}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->CompressedData["
+1:eJxTTMoPSmViYGAQBWIQLVZ9x7ph/mvHC9t32oLoOdxOTiC65fMtMM3Rw+AO
+oj98rwHTpQJSSSA69YhWKohe8WxqHohexilRD6Izyh43gWilk45dILqCm2cG
+iD7bEn0ARC9a0XQGRH/r4L4Dot97Wjo0AunT3rX+IPrx38xgEM2i/SoLRLtO
+5C8D0TKxjdNA9MtHiatAdNqXI2B6z6u0oyCa76f8MRAdGHP/HIgWOvf2FYj2
+vunzEUTfuTJFoglIcy5jUQDRqVp5uiCakb3TEETLGH6wANF3pwmHgehv/Zpg
+umLu/TgQnez6oglE17y/1g6it3xR7QDRTzz39YDobasd9oBoAGoIteg=
+  "]],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Solve","svars",
+   "\"Equations may not give solutions for all \\\"solve\\\" variables.\"",2,
+   1298,285,27143040683078550412,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{
+  3.707507451413075*^9, {3.707507546352734*^9, 3.707507584648727*^9}, {
+   3.7075076292709217`*^9, 3.7075077243104563`*^9}, {3.707507854398756*^9, 
+   3.707507895366704*^9}, {3.707507982741268*^9, 3.707508004608075*^9}, 
+   3.707508043322268*^9, 3.707508085602064*^9, 3.707508141195208*^9, {
+   3.707508179183967*^9, 3.707508194466543*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"-", "1"}], ",", 
+         RowBox[{"-", "1"}], ",", 
+         RowBox[{"-", "1"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"-", "1"}], ",", 
+         RowBox[{"-", "1"}], ",", "0"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"-", "1"}], ",", 
+         RowBox[{"-", "1"}], ",", "1"}], "}"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"-", "1"}], ",", "0", ",", 
+         RowBox[{"-", "1"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"-", "1"}], ",", "0", ",", "0"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"-", "1"}], ",", "0", ",", "1"}], "}"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"-", "1"}], ",", "1", ",", 
+         RowBox[{"-", "1"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"-", "1"}], ",", "1", ",", "0"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"-", "1"}], ",", "1", ",", "1"}], "}"}]}], "}"}]}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"0", ",", 
+         RowBox[{"-", "1"}], ",", 
+         RowBox[{"-", "1"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", 
+         RowBox[{"-", "1"}], ",", "0"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", 
+         RowBox[{"-", "1"}], ",", "1"}], "}"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"0", ",", "0", ",", 
+         RowBox[{"-", "1"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", "0", ",", "0"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", "0", ",", "1"}], "}"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"0", ",", "1", ",", 
+         RowBox[{"-", "1"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", "1", ",", "0"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", "1", ",", "1"}], "}"}]}], "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"1", ",", 
+         RowBox[{"-", "1"}], ",", 
+         RowBox[{"-", "1"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", 
+         RowBox[{"-", "1"}], ",", "0"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", 
+         RowBox[{"-", "1"}], ",", "1"}], "}"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"1", ",", "0", ",", 
+         RowBox[{"-", "1"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", "0", ",", "0"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", "0", ",", "1"}], "}"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"1", ",", "1", ",", 
+         RowBox[{"-", "1"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", "1", ",", "0"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", "1", ",", "1"}], "}"}]}], "}"}]}], "}"}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{
+  3.7075080434192743`*^9, 3.7075080856466923`*^9, 3.707508141240281*^9, {
+   3.707508179280105*^9, 3.707508194492165*^9}}]
+}, Open  ]],
+
+Cell["\<\
+What I want to do is just get the points on each level curve, and then plug \
+them into the curve formula and plot the vectors at those points.\
+\>", "Text",
+ CellChangeTimes->{{3.7075073846725082`*^9, 3.707507430462406*^9}}]
+},
+WindowSize->{716, 751},
+WindowMargins->{{Automatic, 0}, {Automatic, 0}},
+FrontEndVersion->"11.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (September \
+21, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 3837, 116, 432, "Input"],
+Cell[4420, 140, 570, 11, 24, "Message"],
+Cell[4993, 153, 3461, 112, 175, "Output"]
+}, Open  ]],
+Cell[8469, 268, 235, 4, 49, "Text"]
+}
+]
+*)
+
